@@ -128,3 +128,15 @@ try {
     });
   });
 }
+
+function addUpTo(arr, index){
+  return arr.slice(0, index+1).reduce(function(a,b){
+    return a+b
+  })
+}
+
+function maxOf(arr){
+arr[0]<arr[arr.length-1] ? arr=arr.slice(1) : arr = arr.splice(0, arr.length-1)
+if (arr.length>1) {return maxOf(arr)}
+else {return arr[0]}
+}
