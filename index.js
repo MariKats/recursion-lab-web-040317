@@ -1,66 +1,45 @@
-function printString(myString) {
-  console.log(myString[0]);
-
-  if (myString.length > 1) {
-    let mySubString = myString.substring(1, myString.length);
-    printString(mySubString);
+function printString(string){
+  console.log(string[0])
+  if(string.length > 1){
+    string = string.slice(1)
+    printString(string)
   } else {
-    return true;
+    return true
   }
 }
 
 function reverseString(string){
-  let split = string.split("")
-  let arr = []
-  while (split.length > 0 ) {
-  var last = split.pop()
-  arr.push(last)
-  }
-  return arr.join("")
-}
-
-function reverseString(myString){
-   if (myString.length > 0){
-     return reverseString(myString.slice(1)) + myString[0]
-   } else {
-     return ""
-   }
-}
-
-function isPalindrome(myString){
- if (myString.length > 1) {
-  if (myString[0] !== myString[myString.length-1]){
-   return false
-   } else {
-     isPalindrome(myString.slice(1,-1))
-     return true
-   }
- } else {
-   return false
- }
-}
-
-function addUpTo(arr, index) {
-  if (index) {
-    return arr[index] + addUpTo(arr, --index)
+  if (string.length > 0) {
+    return string[string.length-1] + reverseString(string.slice(0,-1))
   } else {
-    return arr[index]
+    return ""
   }
 }
 
-function maxOf(arr){
-if (arr.length===1){return arr[0]}
-  else {
-    arr[0] < arr[arr.length-1] ? arr = arr.slice(1) : arr = arr.splice(0, arr.length-1)
-    return maxOf(arr)
+function isPalindrome(string){
+  if(string.length < 2) return true
+  if(string[0]===string[string.length-1]) return isPalindrome(string.slice(1,-1))
+  else return false
+}
+
+function addUpTo(array, index){
+  if(index > 0){
+    return array[index] + addUpTo(array, index-1)
+  } else {
+    return true
   }
 }
 
-function includesNumber(arr, n){
-  if (arr.length>1) {
-    return arr[0] === n ? true : includesNumber(arr.slice(1), n)
+function maxOf(array){
+  if(array.length > 1){
+    array[0] > array[array.length-1] ? array.pop() : array.shift()
+    maxOf(array)
   }
-  else {
-    return false
-  }
+  return array[0]
+}
+
+function includesNumber(array, n){
+  if (array.length<=0) return false
+  else if (array[0]===n) return true
+  else return includesNumber(array.splice(1), n)
 }
